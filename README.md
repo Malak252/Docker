@@ -6,7 +6,7 @@ docker run -p 5000:5000 my-flask-app
 
 
 
-##to build Dockerfile.nginx for Free Palastine App
+## to build Dockerfile.nginx for Free Palastine App
 
 docker build -t freepalestine:latest -f Dockerfile.nginx .
 
