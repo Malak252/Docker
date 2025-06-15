@@ -12,17 +12,15 @@ services:
     volumes:
       - ./app:/app
     restart: unless-stopped
-  
-  db: 
-    image: postgresql:latest
+  db:
+    image: postgres:latest
     environment:
-      - POSTGRE_USERNAME=user
-      - POSTGRE_PASSWORD=pass
-      - POSTGRE_DATABASE=mydb
-      - POSTGRE_ROOT_PASSWORD=rootpass
-    volumes: 
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=mydb
+    volumes:
       - ./pgdata:/var/lib/postgresql/data
-    command: flask run --host=0.0.0.0
     ports:
       - "5432:5432"
     restart: unless-stopped
+
