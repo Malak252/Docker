@@ -1,0 +1,28 @@
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=development
+      - DATABASE_URL=postgresql://user:pass@db:5432/mydb
+    depends_on:
+      - db
+    volumes:
+      - ./app:/app
+    restart: unless-stopped
+  
+  db: 
+    image: postgresql:latest
+    environment:
+      - POSTGRE_USERNAME=user
+      - POSTGRE_PASSWORD=pass
+      - POSTGRE_DATABASE=mydb
+      - POSTGRE_ROOT_PASSWORD=rootpass
+    volumes: 
+      - ./pgdata:/var/lib/postgresql/data
+    command: flask run --host=0.0.0.0
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
